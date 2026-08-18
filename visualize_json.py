@@ -202,32 +202,60 @@ def create_visualized_image_from_schema(
                 )
 
     if isinstance(patient, dict):
+        bottom_center_lines: list[str] = []
+
         orientation = get_string_member(patient, "orientation")
         if orientation:
-            text = f"Patient Orientation: {orientation}"
-            (text_w, text_h), baseline = cv2.getTextSize(
-                text,
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.55,
-                2,
-            )
-            text_org = ((vis_image.shape[1] - text_w) // 2, vis_image.shape[0] - 18)
+            bottom_center_lines.append(f"Patient Orientation: {orientation}")
+
+        height_mm = get_number_member(patient, "height")
+        if height_mm is not None:
+            bottom_center_lines.append(f"Height: {height_mm / 10:.1f} cm")
+
+        weight_kg = get_number_member(patient, "weight")
+        if weight_kg is not None:
+            bottom_center_lines.append(f"Weight: {weight_kg:.1f} kg")
+
+        if bottom_center_lines:
+            font_scale = 0.55
+            thickness = 2
+            line_gap = 6
+
+            line_sizes = [
+                cv2.getTextSize(line, cv2.FONT_HERSHEY_SIMPLEX, font_scale, thickness)
+                for line in bottom_center_lines
+            ]
+            max_width = max(text_w for (text_w, _), _ in line_sizes)
+            total_height = sum(text_h + baseline for (_, text_h), baseline in line_sizes)
+            total_height += line_gap * (len(bottom_center_lines) - 1)
+
+            box_bottom = vis_image.shape[0] - 12
+            box_top = box_bottom - total_height - 12
+            box_left = (vis_image.shape[1] - max_width) // 2 - 6
+            box_right = (vis_image.shape[1] + max_width) // 2 + 6
+
             cv2.rectangle(
                 vis_image,
-                (text_org[0] - 6, text_org[1] - text_h - 6),
-                (text_org[0] + text_w + 6, text_org[1] + baseline + 4),
+                (box_left, box_top),
+                (box_right, box_bottom),
                 (0, 0, 0),
                 -1,
             )
-            cv2.putText(
-                vis_image,
-                text,
-                text_org,
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.55,
-                (255, 255, 255),
-                2,
-            )
+
+            y = box_top + 6
+            for line, ((text_w, text_h), baseline) in zip(bottom_center_lines, line_sizes):
+                text_x = (vis_image.shape[1] - text_w) // 2
+                y += text_h
+                cv2.putText(
+                    vis_image,
+                    line,
+                    (text_x, y),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    font_scale,
+                    (255, 255, 255),
+                    thickness,
+                )
+                y += baseline + line_gap
 
     if coil_labels:
         line_height = 24

@@ -1,0 +1,15 @@
+{
+    "dsKneeBase_ensemble_output": {"type": "sense_knee_16_aci", "color": "#1f77b4"},
+    "SmartFitKneeBase_ensemble_output": {"type": "rft_knee_16_aci", "color": "#ff7f0e"},
+    "dsAnterior_ensemble_output": {"type": "anterior", "color": "#2ca02c"},
+    "dsTorsoCardiac_ensemble_output": {"type": "torsocardiac_8_aci_sl", "color": "#d62728"},
+    "dsFootAnkle16ch_ensemble_output": {"type": "footankle_2_aci", "color": "#9467bd"},
+    "dsShoulder16ch_ensemble_output": {"type": "shoulder_2_aci", "color": "#8c564b"},
+    "SmartFitShoulder_ensemble_output": {"type": "shoulderadaptive_16_aci_sl", "color": "#e377c2"},
+    "dsHandWrist16ch_ensemble_output": {"type": "handwrist_2_aci", "color": "#7f7f7f"},
+    "dsSmallExtremity16ch_ensemble_output": {"type": "extremitys_2_aci", "color": "#bcbd22"},
+    "dsMskSmall_ensemble_output": {"type": "msk_s_8_aci", "color": "#17becf"},
+    "dsMskMedium_ensemble_output": {"type": "msk_m_8_aci", "color": "#aec7e8"},
+    "dsBreast_ensemble_output": {"type": "sense_breast", "color": "#ffbb78"},
+    "SmartFitTorsoCardiac_ensemble_output": {"type": "torsocardiac_16_aci_sl", "color": "#98df8a"}
+}

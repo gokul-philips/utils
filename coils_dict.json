@@ -1,0 +1,15 @@
+{
+    "dsKneeBase_ensemble_output": "sense_knee_16_aci",
+    "SmartFitKneeBase_ensemble_output": "rft_knee_16_aci",
+    "dsAnterior_ensemble_output": "anterior",
+    "dsTorsoCardiac_ensemble_output": "torsocardiac_8_aci_sl",
+    "dsFootAnkle16ch_ensemble_output": "footankle_2_aci",
+    "dsShoulder16ch_ensemble_output": "shoulder_2_aci",
+    "SmartFitShoulder_ensemble_output": "shoulderadaptive_16_aci_sl",
+    "dsHandWrist16ch_ensemble_output": "handwrist_2_aci",
+    "dsSmallExtremity16ch_ensemble_output": "extremitys_2_aci",
+    "dsMskSmall_ensemble_output": "msk_s_8_aci",
+    "dsMskMedium_ensemble_output": "msk_m_8_aci",
+    "dsBreast_ensemble_output": "sense_breast",
+    "SmartFitTorsoCardiac_ensemble_output": "torsocardiac_16_aci_sl"
+}
